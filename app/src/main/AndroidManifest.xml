@@ -23,8 +23,12 @@
         <activity android:name=".ShoppingListActivity" />
         <activity
             android:name=".NewStoreDialog"
-            android:theme="@android:style/Theme.Dialog" />
-        <activity android:name=".NewItemActivity"></activity>
+            android:theme="@android:style/Theme.Holo.Dialog" />
+        <activity android:name=".NewItemActivity" />
+        <activity
+            android:name=".DeleteStoreActivity"
+            android:theme="@android:style/Theme.Holo.Dialog" />
+        <activity android:name=".EditItemActivity"></activity>
     </application>
 
 </manifest>

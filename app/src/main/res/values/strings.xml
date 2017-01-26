@@ -14,4 +14,7 @@
     <string name="comments">Comments:</string>
     <string name="unit_of_measurement">Unit of measurement</string>
     <string name="item_exists">This item already exists!</string>
+    <string name="delete_store_question">Do you want to delete the store and all of its information?</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
 </resources>

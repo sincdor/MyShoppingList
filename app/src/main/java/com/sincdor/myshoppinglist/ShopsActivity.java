@@ -50,6 +50,21 @@ public class ShopsActivity extends Activity {
                 startActivity(it);
             }
         });
+
+        lVList.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+
+                String rowInfo = String.valueOf(parent.getItemAtPosition(position));
+                String [] storeName = rowInfo.split(": ");
+                Log.d(TAG, "onItemLongClick: storeName: " + storeName[1]);
+                Intent it = new Intent(ShopsActivity.this, DeleteStoreActivity.class);
+                it.putExtra("store_delete", storeName[1]);
+                it.putExtra("index", position);
+                startActivityForResult(it, 20);
+                return true;
+            }
+        });
     }
 
 
@@ -81,6 +96,16 @@ public class ShopsActivity extends Activity {
                     String s = (String) b.get("new_store");
                     Log.d(TAG, "onActivityResult: " + s);
                     addItemToListView(s);
+                    break;
+                }
+            }case 20:{
+                if(resultCode == Activity.RESULT_OK){
+                    Bundle b = data.getExtras();
+
+                    //Está a funcionar muito mal
+                    int index = b.getInt("index");
+                    adapter.remove(adapter.getItem(index));
+                    adapter.notifyDataSetChanged();
                     break;
                 }
             }

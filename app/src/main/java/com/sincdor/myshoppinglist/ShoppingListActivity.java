@@ -41,6 +41,9 @@ public class ShoppingListActivity extends Activity {
         lVShops.setAdapter(adapter);
         tv_shopName.setText(storeName);
         startListView();
+
+
+
     }
 
 
