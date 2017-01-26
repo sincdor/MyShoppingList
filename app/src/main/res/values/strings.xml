@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">My Shopping List</string>
+    <string name="add_shop">Add Shop</string>
+    <string name="list_of_stores">List of stores</string>
+    <string name="store_name">Store name</string>
+    <string name="confirm">confirm</string>
+    <string name="cancel">cancel</string>
+    <string name="erro_fill_store_name">The store name needs to be filled</string>
+    <string name="name">*Name:</string>
+    <string name="product_s_name">Product\'s name</string>
+    <string name="product_brand">Product brand</string>
+    <string name="amount">Amount:</string>
+    <string name="unit_price">Unit price:</string>
+    <string name="comments">Comments:</string>
+    <string name="unit_of_measurement">Unit of measurement</string>
+    <string name="item_exists">This item already exists!</string>
+</resources>
