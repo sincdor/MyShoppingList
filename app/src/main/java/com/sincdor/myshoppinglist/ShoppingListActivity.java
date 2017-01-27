@@ -90,11 +90,18 @@ public class ShoppingListActivity extends Activity {
         int iUnit = cursor.getColumnIndex("unidade");
         int iDate = cursor.getColumnIndex("date");
         int iComprado = cursor.getColumnIndex("comprado");
+
+        Float amount = null;
+
         cursor.moveToFirst();
         while (!cursor.isAfterLast()) {
             if (cursor.getString(iItem_name) != null) {
-                if(cursor.getString(iStore).equals(storeName))
-                    addItemToListView(cursor.getString(iItem_name) + ":" + cursor.getString(iAmount)+cursor.getString(iUnit)+ ":" + cursor.getString(iBrand));
+                if (cursor.getString(iStore).equals(storeName)) {
+                    amount = cursor.getFloat(iAmount);
+                    if(amount == null)
+                        amount = Float.valueOf(0);
+                    addItemToListView(cursor.getString(iItem_name) + ":" + amount + cursor.getString(iUnit) + ":" + cursor.getString(iBrand));
+                }
             }
             cursor.moveToNext();
         }

@@ -62,9 +62,10 @@ public class NewItemActivity extends Activity {
 
             File database = getApplicationContext().getDatabasePath("shoppinglist.db");
             if (database.exists()) {
-                Toast.makeText(NewItemActivity.this, "[DATABASE] - Created", Toast.LENGTH_SHORT).show();
                 Intent resultIntent = new Intent();
-                assert quantidade != null;
+                if(quantidade == null){
+                    quantidade = Float.valueOf(0);
+                }
                 resultIntent.putExtra("new_item", name + ":" + quantidade.toString() + unit + ":" + brand);
                 setResult(Activity.RESULT_OK, resultIntent);
                 finish();
