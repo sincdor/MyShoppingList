@@ -1,18 +1,12 @@
 package com.sincdor.myshoppinglist;
 
 import android.app.Activity;
-import android.content.ContentValues;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
-
-import java.io.File;
 
 public class NewStoreDialog extends Activity {
     EditText shop_name;
@@ -54,7 +48,7 @@ public class NewStoreDialog extends Activity {
                     i--;
                 }
         } else {
-            Toast.makeText(this, R.string.erro_fill_store_name, Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, R.string.error_fill_store_name, Toast.LENGTH_SHORT).show();
             shop_name.setText("");
         }
     }

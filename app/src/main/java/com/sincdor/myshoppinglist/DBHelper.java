@@ -36,7 +36,7 @@ public class DBHelper extends SQLiteOpenHelper {
                     KEY_ID_MSG + " NUMBER, " +
                     KEY_STORE_NAME + " TEXT, " +
                     KEY_ITEM_NAME + " TEXT, " +
-                    KEY_PRICE + " TEXT, " +
+                    KEY_PRICE + " NUMBER, " +
                     KEY_QUANTIDADE + " NUMBER, " +
                     KEY_ITEM_MARCA + " TEXT, " +
                     KEY_DATE + " TEXT, " +

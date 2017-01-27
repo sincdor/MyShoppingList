@@ -1,20 +1,13 @@
 package com.sincdor.myshoppinglist;
 
 import android.app.Activity;
-import android.content.ContentValues;
 import android.content.Intent;
-import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
-
-import java.text.DateFormat;
-import java.util.Date;
 
 public class EditItemActivity extends Activity {
 
@@ -49,7 +42,7 @@ public class EditItemActivity extends Activity {
         et_item_name_edit.setText(item.getName());
         et_brand_edit.setText(item.getBrand());
         et_amount_edit.setText(String.valueOf(item.getQuantidade()));
-        et_price_edit.setText(item.getPrice());
+        et_price_edit.setText(item.getPrice().toString());
         et_unit_edit.setText(item.getUnidade());
         et_comments_edit.setText(item.getObservacoes());
 
@@ -57,11 +50,30 @@ public class EditItemActivity extends Activity {
 
     public void bl_new_item_edit(View view) {
             if (et_item_name_edit.getText().toString().length() > 0) {
+                Float price = null;
+                Float amount = null;
+
+                try {
+                    if (et_amount_edit.getText().length() > 0) {
+                        amount = Float.valueOf(et_amount_edit.getText().toString());
+                    }
+                }catch (NumberFormatException e){
+                    Toast.makeText(this, R.string.error_amount, Toast.LENGTH_SHORT).show();
+                }
+
+                try {
+                    if (et_price_edit.getText().length() > 0) {
+                        price = Float.valueOf(et_amount_edit.getText().toString());
+                    }
+                }catch (NumberFormatException e){
+                    Toast.makeText(this, R.string.error_input_price, Toast.LENGTH_SHORT).show();
+                }
+
                 Item nItem = new Item(et_item_name_edit.getText().toString(),
                         item.getShopName(),
                         et_brand_edit.getText().toString(),
-                        et_price_edit.getText().toString(),
-                        Float.valueOf(et_amount_edit.getText().toString()),
+                        price,
+                        amount,
                         et_comments_edit.getText().toString(),
                         et_unit_edit.getText().toString(),
                         null,
@@ -79,7 +91,7 @@ public class EditItemActivity extends Activity {
                     finish();
                 }
             } else
-                Toast.makeText(this, R.string.erro_fill_store_name, Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, R.string.error_fill_store_name, Toast.LENGTH_SHORT).show();
     }
 
     public void bl_cancel_new_item_edit(View view) {

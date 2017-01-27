@@ -36,14 +36,26 @@ public class NewItemActivity extends Activity {
     }
 
     public void bl_new_item(View view) {
+        Float quantidade = null;
+        Float price = null;
         String name = et_name.getText().toString();
-        Float quantidade = Float.valueOf(et_amount.getText().toString());
+        try {
+            if(et_amount.getText().length() > 0)
+                quantidade = Float.valueOf(et_amount.getText().toString());
+        }catch (NumberFormatException e){
+            Toast.makeText(this, R.string.error_amount, Toast.LENGTH_SHORT).show();
+        }
         String brand = et_brand.getText().toString();
         String comments = et_comments.getText().toString();
         String unit = et_unit.getText().toString();
         Integer comprado = 0;
-        String price = et_price.getText().toString();
-        if (name != null && name.length() > 0) {
+        try {
+            if(et_price.getText().length() > 0)
+                price = Float.valueOf(et_price.getText().toString());
+        }catch (NumberFormatException e){
+            Toast.makeText(this, R.string.error_input_price, Toast.LENGTH_SHORT).show();
+        }
+        if (name.length() > 0) {
             Item item = new Item(name, store, brand, price, quantidade, comments, unit, null, comprado);
 
             Utils.addItemToDB(item, getApplicationContext());
@@ -52,6 +64,7 @@ public class NewItemActivity extends Activity {
             if (database.exists()) {
                 Toast.makeText(NewItemActivity.this, "[DATABASE] - Created", Toast.LENGTH_SHORT).show();
                 Intent resultIntent = new Intent();
+                assert quantidade != null;
                 resultIntent.putExtra("new_item", name + ":" + quantidade.toString() + unit + ":" + brand);
                 setResult(Activity.RESULT_OK, resultIntent);
                 finish();
@@ -62,11 +75,12 @@ public class NewItemActivity extends Activity {
             }
 
         } else {
-            Toast.makeText(this, R.string.erro_fill_store_name, Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, R.string.error_fill_store_name, Toast.LENGTH_SHORT).show();
             et_name.setText("");
         }
     }
 
     public void bl_cancel_new_item(View view) {
+        finish();
     }
 }

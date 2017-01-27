@@ -10,14 +10,14 @@ public class Item implements Serializable {
     private String name;
     private String shopName;
     private String brand;
-    private String price;
+    private Float price;
     private Float quantidade;
     private String observacoes;
     private String unidade;
     private String date;
     private Integer comprado;
 
-    public Item(String name, String shopName, String brand, String price, Float quantidade, String observacoes, String unidade, String date, Integer comprado) {
+    public Item(String name, String shopName, String brand, Float price, Float quantidade, String observacoes, String unidade, String date, Integer comprado) {
         this.name = name;
         this.shopName = shopName;
         this.brand = brand;
@@ -53,11 +53,11 @@ public class Item implements Serializable {
         this.brand = brand;
     }
 
-    public String getPrice() {
+    public Float getPrice() {
         return price;
     }
 
-    public void setPrice(String price) {
+    public void setPrice(Float price) {
         this.price = price;
     }
 

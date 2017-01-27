@@ -179,7 +179,7 @@ public class Utils {
         String comments;
         String unit;
         Integer comprado;
-        String price;
+        Float price;
         String date;
 
 
@@ -211,7 +211,7 @@ public class Utils {
                 comments = cursor.getString(iComments);
                 unit = cursor.getString(iUnit);
                 comprado = cursor.getInt(iComprado);
-                price = cursor.getString(iPrice);
+                price = cursor.getFloat(iPrice);
                 date = cursor.getString(iDate);
 
                 cursor.close();
