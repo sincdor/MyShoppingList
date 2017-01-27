@@ -33,13 +33,14 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="0.6"
-            android:text="@string/product_brand"
+            android:text="@string/amount"
             android:textSize="20sp" />
         <EditText
             android:layout_width="match_parent"
             android:layout_weight="0.4"
             android:layout_height="match_parent"
-            android:id="@+id/et_brand" />
+            android:id="@+id/et_amount"
+            android:inputType="numberDecimal" />
 
     </LinearLayout>
     <LinearLayout
@@ -51,14 +52,14 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="0.6"
-            android:text="@string/amount"
-            android:textSize="20sp" />
+            android:textSize="20sp"
+            android:text="@string/unit_of_measurement"/>
         <EditText
             android:layout_width="match_parent"
             android:layout_weight="0.4"
             android:layout_height="match_parent"
-            android:id="@+id/et_amount"
-            android:inputType="numberDecimal" />
+            android:id="@+id/et_unit"
+            android:hint="Kg, L"/>
 
     </LinearLayout>
     <LinearLayout
@@ -89,14 +90,13 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="0.6"
-            android:textSize="20sp"
-            android:text="@string/unit_of_measurement"/>
+            android:text="@string/product_brand"
+            android:textSize="20sp" />
         <EditText
             android:layout_width="match_parent"
             android:layout_weight="0.4"
             android:layout_height="match_parent"
-            android:id="@+id/et_unit"
-            android:hint="Kg, L"/>
+            android:id="@+id/et_brand" />
 
     </LinearLayout>
 
