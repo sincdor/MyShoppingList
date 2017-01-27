@@ -9,6 +9,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
@@ -20,7 +21,7 @@ import static android.content.ContentValues.TAG;
 
 public class ShoppingListActivity extends Activity {
 
-    ListView lVShops;
+    ListView lVlists;
     String storeName;
     ArrayAdapter<String> adapter;
     TextView tv_shopName;
@@ -36,11 +37,28 @@ public class ShoppingListActivity extends Activity {
 
         adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, new ArrayList<String>());
 
-        lVShops = (ListView) findViewById(R.id.lVList);
+        lVlists = (ListView) findViewById(R.id.lVList);
         tv_shopName = (TextView) findViewById(R.id.tv_shopName);
-        lVShops.setAdapter(adapter);
+        lVlists.setAdapter(adapter);
         tv_shopName.setText(storeName);
+
+        //ListView Click Listener
+        lVlists.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent it = new Intent(ShoppingListActivity.this, EditItemActivity.class);
+                String aux = String.valueOf(parent.getItemAtPosition(position));
+                String [] aux2 = aux.split(":");
+                it.putExtra("item", Utils.getItemFromDB(aux2[0], storeName, getApplicationContext()));
+                it.putExtra("index", position);
+                it.putExtra("old", aux);
+                startActivityForResult(it, 26);
+            }
+        });
+
+
         startListView();
+
 
 
 
@@ -76,7 +94,7 @@ public class ShoppingListActivity extends Activity {
         while (!cursor.isAfterLast()) {
             if (cursor.getString(iItem_name) != null) {
                 if(cursor.getString(iStore).equals(storeName))
-                    addItemToListView(cursor.getString(iItem_name) + " " + cursor.getString(iAmount)+cursor.getString(iUnit)+ " " + cursor.getString(iBrand));
+                    addItemToListView(cursor.getString(iItem_name) + ":" + cursor.getString(iAmount)+cursor.getString(iUnit)+ ":" + cursor.getString(iBrand));
             }
             cursor.moveToNext();
         }
@@ -118,6 +136,22 @@ public class ShoppingListActivity extends Activity {
                     String s = (String) b.get("new_item");
                     Log.d(TAG, "onActivityResult: " + s);
                     addItemToListView(s);
+                    break;
+                }
+            }case 26: {
+                if (resultCode == Activity.RESULT_OK) {
+                    Bundle b = data.getExtras();
+                    int removed = b.getInt("removed");
+                    if(removed == 1){
+                        String oldObj = b.getString("old");
+                        adapter.remove(oldObj);
+                    }else {
+                        int index = b.getInt("index");
+                        String s = b.getString("item");
+                        String oldObj = b.getString("old");
+                        adapter.insert(s, index);
+                        adapter.remove(oldObj);
+                    }
                     break;
                 }
             }

@@ -132,7 +132,7 @@
             android:layout_height="wrap_content"
             android:text="@string/confirm"
             android:id="@+id/button_confirm_item_edit"
-            android:onClick="bl_new_item"/>
+            android:onClick="bl_new_item_edit"/>
 
 
         <Button
@@ -140,7 +140,7 @@
             android:layout_height="wrap_content"
             android:text="@string/cancel"
             android:id="@+id/button_cancel_item_edit"
-            android:onClick="bl_cancel_new_item"/>
+            android:onClick="bl_cancel_new_item_edit"/>
 
     </LinearLayout>
 

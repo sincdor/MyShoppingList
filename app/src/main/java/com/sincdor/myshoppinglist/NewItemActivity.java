@@ -1,19 +1,13 @@
 package com.sincdor.myshoppinglist;
 
 import android.app.Activity;
-import android.content.ContentValues;
 import android.content.Intent;
-import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
 import java.io.File;
-import java.text.DateFormat;
-import java.util.Date;
 
 public class NewItemActivity extends Activity {
     String store;
@@ -41,83 +35,38 @@ public class NewItemActivity extends Activity {
         et_brand = (EditText) findViewById(R.id.et_brand);
     }
 
-    private String getDate(){
-        return DateFormat.getDateTimeInstance().format(new Date());
-    }
-
     public void bl_new_item(View view) {
         String name = et_name.getText().toString();
-        if(name!= null && name.length() > 0){
-            if(!isItem(name)) {
-                try {
-                    DBHelper dbHelper = new DBHelper(getApplicationContext());
-                    SQLiteDatabase bd = dbHelper.getWritableDatabase();
-                    ContentValues values = new ContentValues();
-                    values.put("item_name", name);
-                    values.put("item_store_name", store);
-                    values.put("quantidade", et_amount.getText().toString());
-                    values.put("item_marca", et_brand.getText().toString());
-                    values.put("observacoes", et_comments.getText().toString());
-                    values.put("unidade", et_unit.getText().toString());
-                    values.put("comprado", 0);
-                    values.put("date", getDate());
-                    values.put("price", et_price.getText().toString());
-                    bd.insert("table_items_list", null, values);
-                    Toast.makeText(getApplicationContext(), "Inseri: " + values.toString(), Toast.LENGTH_SHORT).show();
-                } catch (Exception e) {
-                    Log.e("USERINFODB ERROR", "Error Creating Database");
-                }
-                File database = getApplicationContext().getDatabasePath("shoppinglist.db");
-                if (database.exists()) {
-                    Toast.makeText(NewItemActivity.this, "[DATABASE] - Created", Toast.LENGTH_SHORT).show();
-                    Intent resultIntent = new Intent();
-                    resultIntent.putExtra("new_item", name + " " + et_amount.getText().toString()  + et_unit.getText().toString() + " " + et_brand.getText().toString());
-                    setResult(Activity.RESULT_OK, resultIntent);
-                    finish();
-                } else {
-                    Toast.makeText(NewItemActivity.this, "[DATABASE] - Not Created", Toast.LENGTH_SHORT).show();
-                    Toast.makeText(NewItemActivity.this, "[APP] - I Will exit now", Toast.LENGTH_SHORT).show();
-                    System.exit(0);
-                }
-            }else{
-                Toast.makeText(this, R.string.item_exists, Toast.LENGTH_SHORT).show();
-                et_name.setText("");
+        Float quantidade = Float.valueOf(et_amount.getText().toString());
+        String brand = et_brand.getText().toString();
+        String comments = et_comments.getText().toString();
+        String unit = et_unit.getText().toString();
+        Integer comprado = 0;
+        String price = et_price.getText().toString();
+        if (name != null && name.length() > 0) {
+            Item item = new Item(name, store, brand, price, quantidade, comments, unit, null, comprado);
+
+            Utils.addItemToDB(item, getApplicationContext());
+
+            File database = getApplicationContext().getDatabasePath("shoppinglist.db");
+            if (database.exists()) {
+                Toast.makeText(NewItemActivity.this, "[DATABASE] - Created", Toast.LENGTH_SHORT).show();
+                Intent resultIntent = new Intent();
+                resultIntent.putExtra("new_item", name + ":" + quantidade.toString() + unit + ":" + brand);
+                setResult(Activity.RESULT_OK, resultIntent);
+                finish();
+            } else {
+                Toast.makeText(NewItemActivity.this, "[DATABASE] - Not Created", Toast.LENGTH_SHORT).show();
+                Toast.makeText(NewItemActivity.this, "[APP] - I Will exit now", Toast.LENGTH_SHORT).show();
+                System.exit(0);
             }
-        }else{
+
+        } else {
             Toast.makeText(this, R.string.erro_fill_store_name, Toast.LENGTH_SHORT).show();
             et_name.setText("");
         }
     }
 
     public void bl_cancel_new_item(View view) {
-    }
-
-    boolean isItem(String item_name){
-
-        DBHelper bdh = new DBHelper(this);
-
-        SQLiteDatabase bd = bdh.getReadableDatabase();
-        Cursor cursor;
-        try {
-            cursor = bd.query("table_items_list", null, null, null, null, null, null);
-        } catch (Exception e) {
-            return false;
-        }
-        int iShopName = cursor.getColumnIndex("item_name");
-        cursor.moveToFirst();
-        while (!cursor.isAfterLast()) {
-            String v = cursor.getString(iShopName);
-            if (cursor.getString(iShopName) != null && cursor.getString(iShopName).equals(item_name)) {
-                cursor.close();
-                bd.close();
-                bdh.close();
-                return true;
-            }
-            cursor.moveToNext();
-        }
-        cursor.close();
-        bd.close();
-        bdh.close();
-        return false;
     }
 }

@@ -22,13 +22,7 @@ public class DeleteStoreActivity extends Activity {
     }
 
     void deleteStore(String storeName){
-
-        DBHelper db = new DBHelper(this);
-        SQLiteDatabase sq = db.getWritableDatabase();
-
-        sq.execSQL("DELETE FROM table_shop_list WHERE shop_name LIKE '%" + storeName + "%';");
-        sq.execSQL("DELETE FROM table_items_list WHERE item_store_name LIKE '%" + storeName + "%';");
-        //sq.execSQL("DELETE FROM messages WHERE friendusername LIKE '%" + toDeleteName + "%' AND myusername LIKE '%"+ myUsername +"%'");
+        Utils.deleteShopFromDB(storeName, getApplicationContext());
     }
 
     public void bl_deleteStore(View view){

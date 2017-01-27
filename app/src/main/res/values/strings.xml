@@ -17,4 +17,6 @@
     <string name="delete_store_question">Do you want to delete the store and all of its information?</string>
     <string name="yes">Yes</string>
     <string name="no">No</string>
+    <string name="store_exists">This Store already exists</string>
+    <string name="remove_item">Remove Item</string>
 </resources>
