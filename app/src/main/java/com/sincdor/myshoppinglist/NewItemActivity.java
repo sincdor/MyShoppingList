@@ -1,9 +1,11 @@
 package com.sincdor.myshoppinglist;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -83,5 +85,14 @@ public class NewItemActivity extends Activity {
 
     public void bl_cancel_new_item(View view) {
         finish();
+    }
+
+    public void hide_keyboard_createItem(View view) {
+
+            if (view != null) {
+                InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
+                imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
+            }
+
     }
 }

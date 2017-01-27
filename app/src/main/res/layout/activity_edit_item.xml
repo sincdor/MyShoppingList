@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:onClick="hide_keyboard_edit"
     tools:context="com.sincdor.myshoppinglist.EditItemActivity">
 
 
@@ -24,6 +25,7 @@
             android:layout_weight="0.4"
             android:layout_height="match_parent"
             android:id="@+id/et_item_name_edit"
+            android:inputType="textPersonName"
             />
 
     </LinearLayout>
@@ -63,7 +65,8 @@
             android:layout_weight="0.4"
             android:layout_height="match_parent"
             android:id="@+id/et_unit_edit"
-            android:hint="Kg, L"/>
+            android:hint="Kg, L"
+            android:inputType="textPersonName"/>
 
     </LinearLayout>
 
@@ -102,7 +105,8 @@
             android:layout_width="match_parent"
             android:layout_weight="0.4"
             android:layout_height="match_parent"
-            android:id="@+id/et_brand_edit" />
+            android:id="@+id/et_brand_edit"
+            android:inputType="textPersonName"/>
 
     </LinearLayout>
 
@@ -128,6 +132,7 @@
 
     </LinearLayout>
 
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -149,8 +154,14 @@
             android:id="@+id/button_cancel_item_edit"
             android:onClick="bl_cancel_new_item_edit"/>
 
-    </LinearLayout>
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/buy"
+            android:id="@+id/button_bought_item_edit"
+            android:onClick="bl_cancel_bought_item_edit"/>
 
+    </LinearLayout>
 
 
 </LinearLayout>

@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:onClick="hide_keyboard_createItem"
     tools:context="com.sincdor.myshoppinglist.NewItemActivity">
 
     <LinearLayout
@@ -21,7 +22,8 @@
             android:layout_width="match_parent"
             android:layout_weight="0.4"
             android:layout_height="match_parent"
-            android:id="@+id/et_item_name" />
+            android:id="@+id/et_item_name"
+            android:inputType="textPersonName"/>
 
     </LinearLayout>
     <LinearLayout
@@ -59,7 +61,8 @@
             android:layout_weight="0.4"
             android:layout_height="match_parent"
             android:id="@+id/et_unit"
-            android:hint="Kg, L"/>
+            android:hint="Kg, L"
+            android:inputType="textPersonName"/>
 
     </LinearLayout>
     <LinearLayout
@@ -96,7 +99,8 @@
             android:layout_width="match_parent"
             android:layout_weight="0.4"
             android:layout_height="match_parent"
-            android:id="@+id/et_brand" />
+            android:id="@+id/et_brand"
+            android:inputType="textPersonName"/>
 
     </LinearLayout>
 

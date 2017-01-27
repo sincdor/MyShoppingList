@@ -1,11 +1,13 @@
 package com.sincdor.myshoppinglist;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -122,4 +124,28 @@ public class EditItemActivity extends Activity {
         return super.onOptionsItemSelected(items);
     }
 
+    public void bl_cancel_bought_item_edit(View view) {
+        if(item.getComprado() == 0)
+            item.setComprado(1);
+        else
+            item.setComprado(0);
+        if(!Utils.updateItem(item, item.getName() ,getApplicationContext())){
+            finish();
+        }
+        else{
+            Intent resultIntent = new Intent();
+            resultIntent.putExtra("index", index);
+            resultIntent.putExtra("old", old);
+            resultIntent.putExtra("bought", 0);
+            setResult(Activity.RESULT_OK, resultIntent);
+            finish();
+        }
+    }
+
+    public void hide_keyboard_edit(View view) {
+        if (view != null) {
+            InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
+            imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
+        }
+    }
 }
