@@ -24,4 +24,6 @@
     <string name="error_amount">That is not an amount: ex 1, 2, 1.5</string>
     <string name="bought">Bought:</string>
     <string name="buy">Buy</string>
+    <string name="edit">Edit</string>
+    <string name="delete">Delete</string>
 </resources>
