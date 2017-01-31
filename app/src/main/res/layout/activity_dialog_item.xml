@@ -6,24 +6,28 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context="com.sincdor.myshoppinglist.DialogItem"
-    android:gravity="center">
+    android:gravity="center"
+    android:layout_weight="1">
 
 
 
     <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:text="@string/edit"
-        android:onClick="bl_d_edit_item"/>
+        android:onClick="bl_d_edit_item"
+        android:layout_weight="1"/>
     <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:text="@string/delete"
-        android:onClick="bl_d_delete_item"/>
+        android:onClick="bl_d_delete_item"
+        android:layout_weight="1"/>
     <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:text="@string/cancel"
-        android:onClick="bl_d_cancel_item"/>
+        android:onClick="bl_d_cancel_item"
+        android:layout_weight="1"/>
 
 </LinearLayout>

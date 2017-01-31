@@ -7,7 +7,6 @@ import android.view.View;
 
 public class DialogItem extends Activity {
     Item item;
-    Integer index;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -15,7 +14,6 @@ public class DialogItem extends Activity {
 
         Intent it = getIntent();
         item = (Item)it.getSerializableExtra("item");
-        index = it.getExtras().getInt("index");
     }
 
     public void bl_d_edit_item(View view) {
@@ -23,14 +21,16 @@ public class DialogItem extends Activity {
 
         Intent it = new Intent(this, EditItemActivity.class);
         it.putExtra("item", item);
-        it.putExtra("old", item.getName());
-        it.putExtra("index", index);
         startActivity(it);
         finish();
     }
 
     public void bl_d_delete_item(View view) {
-        Utils.removeItemFromDB(item, this);
+        Utils.removeItemFromDB(item, getApplicationContext());
+        Intent resultIntent = new Intent();
+        resultIntent.putExtra("removed", 1);
+
+        setResult(Activity.RESULT_OK, resultIntent);
         finish();
     }
 

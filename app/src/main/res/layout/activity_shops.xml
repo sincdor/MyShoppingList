@@ -5,13 +5,17 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.sincdor.myshoppinglist.ShopsActivity"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    >
     <TextView
+        android:paddingBottom="10dp"
+        android:paddingTop="10dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/list_of_stores"
         android:gravity="center"
-        android:textSize="30sp"/>
+        android:textSize="30sp"
+        android:background="@color/colorPrimary"/>
     <ListView
         android:layout_width="match_parent"
         android:layout_height="match_parent"

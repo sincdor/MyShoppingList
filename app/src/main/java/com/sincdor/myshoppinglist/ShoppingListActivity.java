@@ -32,7 +32,6 @@ public class ShoppingListActivity extends Activity {
 
     ListView lVlists;
     String storeName;
-    ArrayAdapter<String> adapter;
     TextView tv_shopName;
     ArrayList<HashMap<String, Object>> itemsList;
     MyAdapter myAdapter;
@@ -75,11 +74,9 @@ public class ShoppingListActivity extends Activity {
         lVlists.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Intent it = new Intent(ShoppingListActivity.this, EditItemActivity.class);
+                Intent it = new Intent(ShoppingListActivity.this, ItemInfo.class);
                 HashMap aux = (HashMap) parent.getItemAtPosition(position);
                 it.putExtra("item", Utils.getItemFromDB((String) aux.get("nome"), storeName, getApplicationContext()));
-                it.putExtra("index", position);
-                it.putExtra("old", (String) aux.get("nome"));
                 startActivityForResult(it, 26);
             }
         });
@@ -91,8 +88,6 @@ public class ShoppingListActivity extends Activity {
                 Intent it = new Intent(ShoppingListActivity.this, DialogItem.class);
                 HashMap aux = (HashMap) parent.getItemAtPosition(position);
                 it.putExtra("item", Utils.getItemFromDB((String) aux.get("nome"), storeName, getApplicationContext()));
-                it.putExtra("index", position);
-                it.putExtra("old", (String) aux.get("nome"));
                 startActivityForResult(it, 27);
                 return true;
             }
@@ -184,6 +179,13 @@ public class ShoppingListActivity extends Activity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
+        if(resultCode == Activity.RESULT_OK) {
+            itemsList = new ArrayList<>();
+            startListView();
+            myAdapter.notifyDataSetChanged();
+        }
+
+        /*
         switch (requestCode){
             case 6:{
                 if(resultCode == Activity.RESULT_OK){
@@ -198,7 +200,15 @@ public class ShoppingListActivity extends Activity {
                     myAdapter.notifyDataSetChanged();
                 }
             }
+            case 27: {
+                if (resultCode == Activity.RESULT_OK) {
+                    itemsList = new ArrayList<>();
+                    startListView();
+                    myAdapter.notifyDataSetChanged();
+                }
+            }
         }
+        */
     }
 
 
@@ -222,8 +232,6 @@ public class ShoppingListActivity extends Activity {
         @Override
         public View getView(int i, View view, ViewGroup viewGroup) {
             View layout = getLayoutInflater().inflate(R.layout.row_items_list, null);
-
-
 
             LinearLayout linear = (LinearLayout) layout.findViewById(R.id.ll_row_list_items);
 
@@ -259,5 +267,12 @@ public class ShoppingListActivity extends Activity {
 
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
 
+        itemsList = new ArrayList<>();
+        startListView();
+        myAdapter.notifyDataSetChanged();
+    }
 }

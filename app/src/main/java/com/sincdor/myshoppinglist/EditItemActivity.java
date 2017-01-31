@@ -20,8 +20,6 @@ public class EditItemActivity extends Activity {
     EditText et_price_edit;
     EditText et_unit_edit;
     EditText et_comments_edit;
-    String old;
-    int index;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,10 +28,8 @@ public class EditItemActivity extends Activity {
 
         Intent it = getIntent();
         item = (Item) it.getSerializableExtra("item");
-        index = it.getExtras().getInt("index");
         if(item == null)
             finish();
-        old = it.getExtras().getString("old");
         et_item_name_edit = (EditText) findViewById(R.id.et_item_name_edit);
         et_brand_edit = (EditText) findViewById(R.id.et_brand_edit);
         et_amount_edit = (EditText) findViewById(R.id.et_amount_edit);
@@ -44,7 +40,7 @@ public class EditItemActivity extends Activity {
         et_item_name_edit.setText(item.getName());
         et_brand_edit.setText(item.getBrand());
         et_amount_edit.setText(String.valueOf(item.getQuantidade()));
-        et_price_edit.setText(item.getPrice().toString());
+        et_price_edit.setText(String.valueOf(item.getPrice()));
         et_unit_edit.setText(item.getUnidade());
         et_comments_edit.setText(item.getObservacoes());
 
@@ -65,7 +61,7 @@ public class EditItemActivity extends Activity {
 
                 try {
                     if (et_price_edit.getText().length() > 0) {
-                        price = Float.valueOf(et_amount_edit.getText().toString());
+                        price = Float.valueOf(et_price_edit.getText().toString());
                     }
                 }catch (NumberFormatException e){
                     Toast.makeText(this, R.string.error_input_price, Toast.LENGTH_SHORT).show();
@@ -86,8 +82,6 @@ public class EditItemActivity extends Activity {
                 else{
                     Intent resultIntent = new Intent();
                     resultIntent.putExtra("item", nItem.getName() + ":" + String.valueOf(nItem.getQuantidade()) + nItem.getUnidade() + ":" + nItem.getBrand());
-                    resultIntent.putExtra("index", index);
-                    resultIntent.putExtra("old", old);
                     resultIntent.putExtra("removed", 0);
                     setResult(Activity.RESULT_OK, resultIntent);
                     finish();
@@ -112,12 +106,6 @@ public class EditItemActivity extends Activity {
         int id = items.getItemId();
         if (id == R.id.mIRemoveItem){
             Utils.removeItemFromDB(item, getApplicationContext());
-            Intent resultIntent = new Intent();
-            resultIntent.putExtra("removed", 1);
-            resultIntent.putExtra("index", index);
-            resultIntent.putExtra("old", old);
-
-            setResult(Activity.RESULT_OK, resultIntent);
             finish();
             return true;
         }
@@ -134,8 +122,6 @@ public class EditItemActivity extends Activity {
         }
         else{
             Intent resultIntent = new Intent();
-            resultIntent.putExtra("index", index);
-            resultIntent.putExtra("old", old);
             resultIntent.putExtra("bought", 0);
             setResult(Activity.RESULT_OK, resultIntent);
             finish();

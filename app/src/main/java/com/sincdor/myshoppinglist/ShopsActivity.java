@@ -132,7 +132,7 @@ public class ShopsActivity extends Activity {
         cursor.moveToFirst();
         while (!cursor.isAfterLast()) {
             if (cursor.getString(iShopName) != null) {
-                addItemToListView(cursor.getString(iShopId) + ": " + cursor.getString(iShopName));
+                addItemToListView(cursor.getString(iShopName));
             }
             cursor.moveToNext();
         }

@@ -1,112 +1,104 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/activity_edit_item"
+    android:id="@+id/activity_item_info"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:onClick="hide_keyboard_edit"
-    tools:context="com.sincdor.myshoppinglist.EditItemActivity">
+    tools:context="com.sincdor.myshoppinglist.ItemInfo">
 
-
+    <TextView
+        android:paddingBottom="10dp"
+        android:paddingTop="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Queijo"
+        android:gravity="center"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        android:id="@+id/tv_item_name"
+        android:background="@color/colorPrimary"
+        />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="0.6"
-            android:text="@string/name"
-            android:textSize="20sp"/>
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_weight="0.4"
-            android:layout_height="match_parent"
-            android:id="@+id/et_item_name_edit"
-            android:inputType="textPersonName"
-            />
-
-    </LinearLayout>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:paddingTop="20dp">
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="0.6"
             android:text="@string/amount"
-            android:textSize="20sp" />
-        <EditText
+            android:textSize="25sp"
+            android:textStyle="bold"/>
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_weight="0.4"
             android:layout_height="match_parent"
-            android:id="@+id/et_amount_edit"
-            android:inputType="numberDecimal" />
+            android:orientation="horizontal"
+            android:layout_weight="0.4"
+            android:gravity="left">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:id="@+id/tv_amount_edit"
+                android:text="Coisas"
+                android:textSize="20sp"/>
+            <TextView
+                android:layout_marginLeft="5dp"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/tv_unit_edit"
+                android:textSize="20sp"
+                android:text="kg"/>
+
+        </LinearLayout>
+
 
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="0.6"
-            android:textSize="20sp"
-            android:text="@string/unit_of_measurement"/>
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_weight="0.4"
-            android:layout_height="match_parent"
-            android:id="@+id/et_unit_edit"
-            android:hint="Kg, L"
-            android:inputType="textPersonName"/>
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:paddingTop="20dp">
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="0.6"
             android:text="@string/unit_price"
-            android:textSize="20sp" />
-        <EditText
+            android:textSize="25sp"
+            android:textStyle="bold"/>
+        <TextView
             android:layout_width="match_parent"
             android:layout_weight="0.4"
             android:layout_height="match_parent"
-            android:id="@+id/et_price_edit"
-            android:inputType="numberDecimal" />
+            android:textSize="20sp"
+            android:id="@+id/tv_price_edit" />
 
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:paddingTop="20dp">
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="0.6"
             android:text="@string/product_brand"
-            android:textSize="20sp" />
-        <EditText
+            android:textStyle="bold"
+            android:textSize="25sp" />
+        <TextView
             android:layout_width="match_parent"
             android:layout_weight="0.4"
             android:layout_height="match_parent"
-            android:id="@+id/et_brand_edit"
-            android:inputType="textPersonName"/>
+            android:id="@+id/tv_brand_edit"
+            android:textSize="20sp"/>
 
     </LinearLayout>
 
@@ -114,45 +106,45 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:gravity="center">
+        android:gravity="center"
+        android:paddingTop="20dp">
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="0.6"
-            android:textSize="20sp"
+            android:textSize="25sp"
+            android:textStyle="bold"
             android:text="@string/comments"/>
-        <EditText
+        <TextView
             android:layout_width="match_parent"
             android:layout_weight="0.4"
             android:layout_height="match_parent"
-            android:id="@+id/et_comments_edit"
+            android:id="@+id/tv_comments_edit"
             android:maxLines="5"/>
 
     </LinearLayout>
-
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="horizontal"
-        android:gravity="bottom|center">
+        android:gravity="bottom|center"
+        android:paddingTop="20dp"
+        >
+
 
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/confirm"
-            android:id="@+id/button_confirm_item_edit"
-            android:onClick="bl_new_item_edit"/>
-
-
+            android:text="@string/buy"
+            android:id="@+id/button_bought_item_edit"
+            android:onClick="bl_bought_item"/>
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/cancel"
             android:id="@+id/button_cancel_item_edit"
-            android:onClick="bl_cancel_new_item_edit"/>
-
+            android:onClick="bl_cancel_item"/>
 
     </LinearLayout>
 
