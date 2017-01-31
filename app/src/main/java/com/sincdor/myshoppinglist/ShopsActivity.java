@@ -56,10 +56,8 @@ public class ShopsActivity extends Activity {
             public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
 
                 String rowInfo = String.valueOf(parent.getItemAtPosition(position));
-                String [] storeName = rowInfo.split(": ");
-                Log.d(TAG, "onItemLongClick: storeName: " + storeName[1]);
                 Intent it = new Intent(ShopsActivity.this, DeleteStoreActivity.class);
-                it.putExtra("store_delete", storeName[1]);
+                it.putExtra("store_delete", rowInfo);
                 it.putExtra("index", position);
                 startActivityForResult(it, 20);
                 return true;
