@@ -1,0 +1,29 @@
+<resources>
+    <string name="app_name">Lista de Compras</string>
+    <string name="add_shop">Adicionar Loja</string>
+    <string name="list_of_stores">Lista de lojas</string>
+    <string name="store_name">Nome da Loja:</string>
+    <string name="confirm">confirmar</string>
+    <string name="cancel">cancelar</string>
+    <string name="error_fill_store_name">O Campo nome da loja precisa de ser preenchido!</string>
+    <string name="name">*Nome:</string>
+    <string name="product_s_name">Nome do Produto</string>
+    <string name="product_brand">Marca:</string>
+    <string name="amount">Quantidade:</string>
+    <string name="unit_price">Preço Unitário:</string>
+    <string name="comments">Comentários:</string>
+    <string name="unit_of_measurement">Unidade de Medida:</string>
+    <string name="item_exists">Este item já existe!</string>
+    <string name="delete_store_question">Quer mesmo apagar esta loja e toda a sua informação?</string>
+    <string name="yes">Sim</string>
+    <string name="no">Não</string>
+    <string name="store_exists">Já existe uma loja com este nome!</string>
+    <string name="remove_item">Eliminar Item</string>
+    <string name="error_number_input">Isso não é um numero!</string>
+    <string name="error_input_price">Isso não é um preço: ex 1, 2, 1.5</string>
+    <string name="error_amount">Isso não é uma quantidade, exemplo 1, 2</string>
+    <string name="bought">Comprado:</string>
+    <string name="buy">Comprado</string>
+    <string name="edit">Editar</string>
+    <string name="delete">Eliminar</string>
+</resources>
